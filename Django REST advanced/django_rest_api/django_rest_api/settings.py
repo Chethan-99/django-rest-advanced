@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'test_app',
     'debug_toolbar',
     'user',
+    'gateway',
 ]
 
 AUTH_USER_MODEL = "user.CustomUser"

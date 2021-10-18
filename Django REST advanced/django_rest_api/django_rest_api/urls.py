@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.urls.conf import include
+from django.urls.conf import include, path
 from test_app.views import SimpleAPIView
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/',SimpleAPIView.as_view())
+    path('product/',SimpleAPIView.as_view()),
+    path('gateway/', include("gateway.urls"))
 ]
 
 if settings.DEBUG:
