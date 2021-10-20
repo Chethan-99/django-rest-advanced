@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from django import conf
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'user',
     'gateway',
+    'cloudinary_storage',
 ]
 
 AUTH_USER_MODEL = "user.CustomUser"
@@ -56,6 +60,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("gateway.authentication.Authentication", )
+}
 
 INTERNAL_IPS = (
     "127.0.0.1",
@@ -85,21 +93,21 @@ WSGI_APPLICATION = 'django_rest_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'testdb',
-#         'USER': 'hp',
-#         'PASSWORD': 'hp1999',
-#         'HOST': '127.0.0.1',
-#         'PORT': 5432,
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
+
+DATABASES = {
+    'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'test',
+       'USER': 'postgres',
+       'PASSWORD': 'hp1999',
+       'HOST': 'localhost',
+       'PORT': '5432',
+   }
  }
 
 
@@ -140,6 +148,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : "drznhdwq4",
+    'API_KEY' : "168425791841985",
+    'API_SECRET' : "1H4-2PGeaPmb7X2e7t2VlCzOb_M",
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

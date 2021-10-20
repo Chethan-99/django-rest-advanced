@@ -56,7 +56,7 @@ class LoginView(APIView):
             user_id=user.id, access=access, refresh=refresh
         )
 
-        return Response({"access": access, "refresh": refresh})
+        return Response({"access": access.decode(), "refresh": refresh.decode()})
 
 
 class RegisterView(APIView):

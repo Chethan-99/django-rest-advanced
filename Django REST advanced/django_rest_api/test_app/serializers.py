@@ -11,6 +11,7 @@ class SimpleSerializer(serializers.Serializer):
     stock = serializers.IntegerField()
     status = serializers.BooleanField(default=True)
     date_created = serializers.DateField(read_only=True)
+    profile_picture = serializers.ImageField()
 
     class Meta:
         model = Product
@@ -20,3 +21,9 @@ class SimpleSerializer(serializers.Serializer):
     
     def upadte(self, validated_data):
         return Product.objects.all()
+
+class StaticSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = "__all__"

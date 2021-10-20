@@ -1,9 +1,10 @@
 from django.db.models import manager
 from django.shortcuts import render
 from rest_framework import generics, serializers
-from .serializers import SimpleSerializer
+from .serializers import SimpleSerializer, StaticSerializer
 from .models import Product
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
 # Create your views here.
 class SimpleAPIView(generics.GenericAPIView):
@@ -21,3 +22,7 @@ class SimpleAPIView(generics.GenericAPIView):
         return Response({
             "data":SimpleSerializer(content, many=True).data
         })
+
+class StaticView(ModelViewSet):
+    serializer_class = StaticSerializer
+    queryset = Product.objects.all()

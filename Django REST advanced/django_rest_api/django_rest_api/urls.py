@@ -21,7 +21,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('product/',SimpleAPIView.as_view()),
+    path('test/',include("test_app.urls")),
     path('gateway/', include("gateway.urls"))
 ]
 

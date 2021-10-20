@@ -11,6 +11,7 @@ class Product(models.Model):
     stock = models.IntegerField()
     status = models.BooleanField(default=True)
     date_created = models.DateField(auto_now_add=True)
+    profile_picture = models.ImageField(upload_to="Images", default="2.jpg")
 
     
 
